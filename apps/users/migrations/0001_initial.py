@@ -1,5 +1,5 @@
 from django.db import migrations, models
-import django.contrib.auth.models
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -33,9 +33,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Users',
                 'db_table': 'users',
             },
-            managers=[
-                ('objects', django.contrib.auth.models.AbstractBaseUser.get_manager()),
-            ],
         ),
         migrations.CreateModel(
             name='UserProfile',
@@ -45,7 +42,7 @@ class Migration(migrations.Migration):
                 ('avatar_url', models.URLField(blank=True)),
                 ('preferred_language', models.CharField(default='en', max_length=10)),
                 ('country', models.CharField(blank=True, max_length=10)),
-                ('user', models.OneToOneField(on_delete=models.deletion.CASCADE, related_name='profile', to='users.user')),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to='users.user')),
             ],
             options={
                 'db_table': 'user_profiles',
