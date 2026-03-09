@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
-    'drf_yasg',
+    'drf_spectacular',
     # Liemo apps
     'apps.users',
     'apps.stores',
@@ -98,6 +98,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -108,7 +109,13 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Liemo API',
+    'DESCRIPTION': 'Live Store Link Aggregator Platform API',
+    'VERSION': '1.0.0',
+}
+
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # React admin
+    'http://localhost:5173',
     'http://localhost:3000',
 ]
